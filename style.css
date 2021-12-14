@@ -1,14 +1,14 @@
-@import 'preBienvenida.css';
-@import 'welcome.css';
-@import 'terms.css';
-@import 'signup.css';
-@import 'signin.css';
-@import 'forgotPassw.css';
-@import 'home.css';
-@import 'aboutUs.css';
-@import 'error.css';
-@import 'header.css';
-@import 'editProfile.css';
-@import 'search.css';
+@import '/preBienvenida.css';
+@import '/welcome.css';
+@import '/terms.css';
+@import '/signup.css';
+@import '/signin.css';
+@import '/forgotPassw.css';
+@import '/home.css';
+@import '/aboutUs.css';
+@import '/error.css';
+@import '/header.css';
+@import '/editProfile.css';
+@import '/search.css';
 
 @import 'publications.css';
