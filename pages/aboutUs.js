@@ -6,7 +6,7 @@ const AboutUs = () => {
     <!-- ABOUT US PAGE -->
       <section id="AboutUs" class="Box">
         <div class="LogoLargeDiv">
-          <img class="LogoLarge" src="/src/img/Logos/LogoG7.png" alt="Ecogram">
+          <img class="LogoLarge" src="img/Logos/LogoG7.png" alt="Ecogram">
         </div><br>
         <div class="AboutUsText">
           <h1>ECOGRAM</h1>
