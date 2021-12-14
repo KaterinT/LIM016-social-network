@@ -20,21 +20,21 @@ const handleError = (error) => {
   document.getElementById('errormessage').innerHTML = errorCode;
 };
 
-export const handleCurrent = () => {
-  const user = auth.currentUser;
-  if (user !== null) {
-    user.providerData.forEach((profile) => {
-      // console.log(`Sign-in provider: ${profile.providerId}`);
-      // console.log(`Provider-specific UID: ${profile.uid}`);
-      // console.log(`Name: ${profile.displayName}`);
-      // console.log(`Email: ${profile.email}`);
-      // console.log(`Photo URL: ${profile.photoURL}`);
-      // console.log(`uid: ${profile.uid}`);
-    });
-    // console.log(displayName, email, photoURL, emailVerified, uid);
-  }
-  return user;
-};
+// export const handleCurrent = () => {
+//   const user = auth.currentUser;
+//   if (user !== null) {
+//     user.providerData.forEach((_profile) => {
+//       // console.log(`Sign-in provider: ${profile.providerId}`);
+//       // console.log(`Provider-specific UID: ${profile.uid}`);
+//       // console.log(`Name: ${profile.displayName}`);
+//       // console.log(`Email: ${profile.email}`);
+//       // console.log(`Photo URL: ${profile.photoURL}`);
+//       // console.log(`uid: ${profile.uid}`);
+//     });
+//     // console.log(displayName, email, photoURL, emailVerified, uid);
+//   }
+//   return user;
+// };
 
 export const handleSignin = (e) => {
   e.preventDefault();
@@ -169,5 +169,5 @@ const SignIn = () => {
 export default SignIn;
 
 // Boton para iniciar sesion con Google - Linea 122
-/*<button type="submit" id="btn-signin-google" class="LoginGooglebtn">*/
-/*Continue with Google</button>*/ 
+/* <button type="submit" id="btn-signin-google" class="LoginGooglebtn"> */
+/* Continue with Google</button> */
