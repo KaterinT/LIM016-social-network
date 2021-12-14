@@ -35,41 +35,41 @@ const AboutUs = () => {
         </div>
         <div class="FounderImg">
           <h1>FOUNDERS:</h1>
-          <img src="/src/img/Logos/KMR4.png" alt="Founders">
+          <img src="img/Logos/KMR4.png" alt="Founders">
         </div><br>
 
         <div class="Founders-Box">
           <div class="Founder-Box-Box">
             <a target="_blank" href="https://github.com/KaterinT">
-              <img src="/src/img/RedesSociales/github-120.png" class="redSocial" alt="Github">
+              <img src="img/RedesSociales/github-120.png" class="redSocial" alt="Github">
             </a>
             <a target="_blank" href="mailto:tellourakaterin@gmail.com">
-              <img src="/src/img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
+              <img src="img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
             </a>
-            <a target="_blank" href=""><img src="/src/img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn"></a>
+            <a target="_blank" href=""><img src="img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn"></a>
             <p>Katerin Tello</p>
           </div>
           <div class="Founder-Box-Box">
             <a target="_blank" href="https://github.com/marianagdeveloper">
-              <img src="/src/img/RedesSociales/github-120.png" class="redSocial" alt="Github">
+              <img src="img/RedesSociales/github-120.png" class="redSocial" alt="Github">
             </a>
             <a target="_blank" href="mailto:">
-              <img src="/src/img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
+              <img src="img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
             </a>
             <a target="_blank" href="">
-              <img src="/src/img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn">
+              <img src="img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn">
             </a>
             <p>Mariana Guanda</p>
           </div>
           <div class="Founder-Box-Box">
             <a target="_blank" href="https://github.com/RJRCH123">
-              <img src="/src/img/RedesSociales/github-120.png" class="redSocial" alt="Github">
+              <img src="img/RedesSociales/github-120.png" class="redSocial" alt="Github">
             </a>
             <a target="_blank" href="mailto:rous9716@gmail.com">
-              <img src="/src/img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
+              <img src="img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
             </a>
             <a target="_blank" href="https://www.linkedin.com/in/rosamaria-rodriguez-6904a1191/">
-              <img src="/src/img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn">
+              <img src="img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn">
             </a>
             <p>Rosamaria Rodriguez</p>
           </div>
