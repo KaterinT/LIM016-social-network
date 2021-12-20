@@ -95,6 +95,11 @@
 
 .interests img {
   width: 40%;
+  border-radius: 100%;
+  border-width: 3px;
+  border-color: rgb(10, 24, 6);
+  border-style: solid;
+  background: #000;
 }
 
 /* Photo: Photo Profile */
@@ -115,6 +120,10 @@
 }
 
 /* Country */
+.flag{
+  margin-right: 11px;
+}
+
 .countryUser {
   grid-area: 4 / 1 / 5 / 3;
   /* border: 1px solid black; */
