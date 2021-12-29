@@ -129,7 +129,7 @@ const Search = () => {
   function printUser(photo, fullname, country, interests, bio) {
     divCardUser.innerHTML += `
         <div class='search'>
-          <div class='perfil'><img class='imgPerfil' src='${photo}' alt=''>           <button id="btnSeeUserPost" class="btnSeeUserPost" data-userPost:  ><a href="#/home">See Posts</a></button></div>
+          <div class='perfil'><img class='imgPerfil' src='${photo}' alt=''>           <button id="btnSeeUserPost" class="btnSeeUserPost"><a href="#/home">See Posts</a></button></div>
           <div class='caracteres'>
             <div class='nombre'>${fullname}</div>
             <div class='pais'>${country}</div>
@@ -139,7 +139,7 @@ const Search = () => {
               <div class='imgCaracteres'><img src='${interests[2]}' alt=''></div>
             </div>
             <div class='flexBtn'>
-              <p id="txtBioPost" class="txtBioPost" data-userPost:  >Bio : ${bio}</p>
+              <p id="txtBioPost" class="txtBioPost" >${bio}</p>
             </div>
           </div>  
         </div>
@@ -164,7 +164,7 @@ const Search = () => {
 
   // Guarda nombre en sessionStorange
 
-
+  // const btnSeeUserPost =
   // const nameUserSessionStorange = () => {
   //   usersInFirestore()
   //     .then((querySnapshot) => {
@@ -176,8 +176,6 @@ const Search = () => {
   //       console.log('err: ', err);
   //     });
   // };
-
-
   return divElemt;
 };
 

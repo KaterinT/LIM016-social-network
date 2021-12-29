@@ -532,9 +532,9 @@ const Home = () => {
     containerHome.querySelector('.countryImg').innerHTML += `
     <img
     title='${info.country.split(':')[1]}'
-    src='https:// flagcdn.com/40x30/${info.country.split(':')[0]}.png'
+    src='https://flagcdn.com/40x30/${info.country.split(':')[0]}.png'
     srcset='httpscountrycdn.com/80x60/${info.country.split(':')[0]}.png 2x,
-      https:// flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'
+      https://flagcdn.com/120x90/${info.country.split(':')[0]}.png 3x'
     width='40'
     height='30'
     alt='${info.country.split(':')[1]}'>
