@@ -135,15 +135,11 @@ const Search = () => {
   function printUser(photo, fullname, country, interests, bio) {
     divCardUser.innerHTML += `
         <div class='search'>
-<<<<<<< HEAD
-          <div class='perfil'><img class='imgPerfil' src='${photo}' alt=''>           <button id="btnSeeUserPost" class="btnSeeUserPost"><a href="#/home">See Posts</a></button></div>
-=======
           <div class='perfil'>
           <img class='imgPerfil' src='${photo}' alt=''>
           <button id="btnSeeUserPost" class="btnSeeUserPost">
             <a id="btnSeeUser" href="#/home" data-ref='${fullname}'>See Posts</a>
           </button></div>
->>>>>>> a8651a4016a3cb70310723b9f5b2f9a93dbe6c11
           <div class='caracteres'>
             <div class='nombre'>${fullname}</div>
             <div class='pais'>${country}</div>
@@ -153,11 +149,7 @@ const Search = () => {
               <div class='imgCaracteres'><img src='${interests[2]}' alt=''></div>
             </div>
             <div class='flexBtn'>
-<<<<<<< HEAD
-              <p id="txtBioPost" class="txtBioPost" >${bio}</p>
-=======
               <p id="txtBioPost" class="txtBioPost">${bio}</p>
->>>>>>> a8651a4016a3cb70310723b9f5b2f9a93dbe6c11
             </div>
           </div>  
         </div>
@@ -192,10 +184,6 @@ const Search = () => {
 
   // Users
   infoUsers();
-<<<<<<< HEAD
-=======
-
->>>>>>> a8651a4016a3cb70310723b9f5b2f9a93dbe6c11
   return divElemt;
 };
 
