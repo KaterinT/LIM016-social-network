@@ -1,3 +1,6 @@
+/* eslint-disable no-return-await */
+/* eslint-disable default-case */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-inner-declarations */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
@@ -88,8 +91,8 @@ async function addPublication(publication, urlsImg) {
 
 /* *************** Eliminar publicacion de Firebase *************** */
 
-export const deletePublication = (idPublicationRef) =>
-  deleteDoc(doc(db, 'publications', idPublicationRef));
+export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
+export const deleteUrl = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
 
 /* *************** Editar publicacion de Firebase *************** */
 
@@ -97,6 +100,7 @@ export const editPublication = (idPublicationRef, postEdit) => {
   const publiUpdate = doc(db, 'publications', idPublicationRef);
   return updateDoc(publiUpdate, {
     publication: postEdit,
+    urls: postEdit,
   });
 };
 
@@ -252,7 +256,6 @@ const Home = () => {
     while (boxPosts.firstChild) {
       boxPosts.firstChild.remove();
     }
-    return;
   }
 
   //  Function - Filters
@@ -315,7 +318,7 @@ const Home = () => {
       fileReader.readAsDataURL(file);
       fileReader.addEventListener('load', function () {
         imgPreview.style.display = 'block';
-        let fileName = `${file.name}`.replace(/\s+/g, '').split('.')[0].replace(/[.*+\-?^${}()|[\]\\]/g, '');
+        const fileName = `${file.name}`.replace(/\s+/g, '').split('.')[0].replace(/[.*+\-?^${}()|[\]\\]/g, '');
         console.log('🚀 ~ file: home.js ~ line 309 ~ fileName', fileName);
 
         imgPreview.innerHTML += `
@@ -326,14 +329,14 @@ const Home = () => {
         `;
 
         // Div's images
-        const elementsImages = imgPreview.querySelectorAll(`[data-ref]`);
+        const elementsImages = imgPreview.querySelectorAll('[data-ref]');
 
-        elementsImages.forEach(element => {
+        elementsImages.forEach((element) => {
           element.querySelector('#btnDeleteImg').addEventListener('click', (e) => {
             e.preventDefault();
             cleanModal();
             //  const divDelete = e.target.dataset.ref;
-            let divDelete = e.target.parentNode.dataset.ref;
+            const divDelete = e.target.parentNode.dataset.ref;
             const removeImg = imgPreview.querySelector(`#${divDelete}`);
             //  Delete div publication
             removeImg.remove();
@@ -424,8 +427,7 @@ const Home = () => {
     e.preventDefault();
     const divPublicado = containerHome.querySelector('#publicado');
     const publication = containerHome.querySelector('#texta2').value;
-    containerHome.querySelector('#texta2').value =
-      containerHome.querySelector('#texta2').defaultValue;
+    containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
 
     while (divPublicado.firstChild) {
       divPublicado.removeChild(divPublicado.firstChild);
@@ -448,13 +450,7 @@ const Home = () => {
         console.log('agregando post con 0 imagen');
         cleanModal();
         addPublication(publication, ['']);
-
-        readUser(uid())
-          //  eslint-disable-next-line no-sequences
-          .then((value) => {
-            reedPublications(value);
-          })
-          .catch((error) => console.log(error));
+        reedPublications({});
       }
 
       if (files.length == 1) {
@@ -464,12 +460,8 @@ const Home = () => {
         Promise.all([p1])
           .then((values) => {
             addPublication(publication, values);
-            readUser(uid())
-              .then((value) => {
-                reedPublications(value);
-                files = [];
-              })
-              .catch((error) => console.log(error));
+            reedPublications({});
+            files = [];
           })
           .catch(console.log);
       }
@@ -483,12 +475,8 @@ const Home = () => {
           .then((values) => {
             console.log('caso 2222222222222222', values);
             addPublication(publication, values);
-            readUser(uid())
-              .then((value) => {
-                reedPublications(value);
-                files = [];
-              })
-              .catch((error) => console.log(error));
+            reedPublications({});
+            files = [];
           })
           .catch(console.log);
       }
@@ -536,8 +524,7 @@ const Home = () => {
     //  Interests
     //  eslint-disable-next-line no-plusplus
     for (let index = 0; index < 3; index++) {
-      containerHome.querySelector(`#Interests-${index}`).src =
-        info.interests[index];
+      containerHome.querySelector(`#Interests-${index}`).src = info.interests[index];
       console.log(index);
     }
   };
@@ -565,7 +552,7 @@ const Home = () => {
 
   async function llenarPublications(documentFirebase, idPublication) {
     const userOfPublication = await getDoc(
-      doc(db, 'users', documentFirebase.data().author)
+      doc(db, 'users', documentFirebase.data().author),
     );
     if (userOfPublication.exists()) {
       const divPublicado = containerHome.querySelector('#publicado');
@@ -674,10 +661,11 @@ const Home = () => {
       const btnModalCancel = document.getElementById('btn-modal-no');
 
       //  delete
+      let deleted = '';
       divPublicado
         .querySelector('.btnDelete')
         .addEventListener('click', (event) => {
-          let deleted = event.target.dataset.ref;
+          deleted = event.target.dataset.ref;
           //  INIT - Modal for Vericate Delete Publication
           let stateModal = false;
           //  view modal
@@ -704,11 +692,12 @@ const Home = () => {
             stateModal = true;
             //  Delete publication for Firebase
             if (deleted !== '') {
-              deletePublication(deleted);
-              const removeDiv = divPublicado.querySelector(`#${deleted}`);
-
+              let removeDiv = divPublicado.querySelector(`#${deleted}`);
               //  Delete div publication
+              deletePublication(deleted);
               removeDiv.remove();
+              deleted = '';
+              removeDiv = '';
             }
             return stateModal;
           });
@@ -723,38 +712,60 @@ const Home = () => {
   /* ***** leer datos desde Firebase de la colección Publicaciones y Usuarios ***** */
 
   async function reedPublications(filterMyPost) {
-    console.log('filterMyPost', filterMyPost);
-
     let querySnapshotPublications = await getDocs(
-      collection(db, 'publications')
+      collection(db, 'publications'),
     );
 
-    if (Object.keys(filterMyPost) == 'my') {
-      let q = query(
+    // Validate View Search
+    const userSearchSession = JSON.parse(sessionStorage.getItem('userSearch'));
+    let nameSearch = userSearchSession.name;
+    if (nameSearch !== '') {
+      const q = query(
+        collection(db, 'users'),
+        where('name', '>=', nameSearch),
+        where('name', '<=', `${nameSearch}\uf8ff`),
+      );
+
+      const querySnapshot = await getDocs(q);
+      let uidUserFilter;
+      querySnapshot.forEach((element) => {
+        uidUserFilter = element.data().uid;
+      });
+      const qa = query(
         collection(db, 'publications'),
-        where('author', '==', sessionStorage.getItem('key'))
+        where('author', '==', uidUserFilter),
+      );
+      querySnapshotPublications = await getDocs(qa);
+    }
+    const objName = { name: '' };
+    sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
+
+    if (Object.keys(filterMyPost) == 'my') {
+      const q = query(
+        collection(db, 'publications'),
+        where('author', '==', sessionStorage.getItem('key')),
       );
       querySnapshotPublications = await getDocs(q);
     }
 
     if (Object.keys(filterMyPost) == 'name') {
-       console.log('filter user: ', filterMyPost.name);
-      let q = query(
+      //  console.log('filter user: ', filterMyPost.name);
+      const q = query(
         collection(db, 'users'),
         where('name', '>=', filterMyPost.name.capitalize()),
-        where('name', '<=', filterMyPost.name.capitalize() + '\uf8ff')
+        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`), 
       );
 
-      console.log('q', q);
+      // console.log('q', q);
       const querySnapshot = await getDocs(q);
       let uidUserFilter;
       querySnapshot.forEach((element) => {
         uidUserFilter = element.data().uid;
       });
 
-      let qa = query(
+      const qa = query(
         collection(db, 'publications'),
-        where('author', '==', uidUserFilter)
+        where('author', '==', uidUserFilter),
       );
 
       querySnapshotPublications = await getDocs(qa);

@@ -1,3 +1,8 @@
+/* eslint-disable func-names */
+/* eslint-disable no-use-before-define */
+/* eslint-disable prefer-const */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-extend-native */
 import {
   getDocs,
   collection,
@@ -6,7 +11,7 @@ import {
   where,
 } from '../utils/firebaseconfig.js';
 import { countries } from '../utils/countries.js';
-import { interests } from '../utils/interests.js';
+import { dataInterests } from '../utils/interests.js';
 
 String.prototype.capitalize = function () {
 // console.log(this.charAt(0).toUpperCase() + this.slice(1));
@@ -96,12 +101,14 @@ const Search = () => {
 
   // Show Select Interest
   // eslint-disable-next-line no-restricted-syntax
-  for (const prop in interests) {
+  for (const prop in dataInterests) {
     divSelectInterest.innerHTML += `
-    <option value='${interests[prop]}'>
+    <option value='${dataInterests[prop]}'>
       ${prop}
     </option>`;
   }
+
+  // Select interest
   divSelectInterest.addEventListener('change', () => {
     // console.log('divSelectInterest:', divSelectInterest.value);
     filterUsers('interests', divSelectInterest);
@@ -112,7 +119,6 @@ const Search = () => {
     // console.log('data: ', data);
     const dataUsers = data;
     dataUsers.forEach((doc) => {
-      // console.log(doc.id, ' => ', doc.data());
       // Print One User
       let user; let photo; let fullname; let country; let interests; let bio;
       user = doc.data();
@@ -129,7 +135,15 @@ const Search = () => {
   function printUser(photo, fullname, country, interests, bio) {
     divCardUser.innerHTML += `
         <div class='search'>
+<<<<<<< HEAD
           <div class='perfil'><img class='imgPerfil' src='${photo}' alt=''>           <button id="btnSeeUserPost" class="btnSeeUserPost"><a href="#/home">See Posts</a></button></div>
+=======
+          <div class='perfil'>
+          <img class='imgPerfil' src='${photo}' alt=''>
+          <button id="btnSeeUserPost" class="btnSeeUserPost">
+            <a id="btnSeeUser" href="#/home" data-ref='${fullname}'>See Posts</a>
+          </button></div>
+>>>>>>> a8651a4016a3cb70310723b9f5b2f9a93dbe6c11
           <div class='caracteres'>
             <div class='nombre'>${fullname}</div>
             <div class='pais'>${country}</div>
@@ -139,11 +153,28 @@ const Search = () => {
               <div class='imgCaracteres'><img src='${interests[2]}' alt=''></div>
             </div>
             <div class='flexBtn'>
+<<<<<<< HEAD
               <p id="txtBioPost" class="txtBioPost" >${bio}</p>
+=======
+              <p id="txtBioPost" class="txtBioPost">${bio}</p>
+>>>>>>> a8651a4016a3cb70310723b9f5b2f9a93dbe6c11
             </div>
           </div>  
         </div>
   `;
+
+    // Button See Post
+    const btnSeeUserPosts = divCardUser.querySelectorAll('#btnSeeUser');
+
+    btnSeeUserPosts.forEach((element) => {
+      element.addEventListener('click', (e) => {
+        let userSearch = e.target.dataset.ref;
+        let objName = {
+          name: `${userSearch}`,
+        };
+        sessionStorage.setItem('userSearch', (JSON.stringify(objName)));
+      });
+    });
   }
 
   // Users in Firestore and print
@@ -161,6 +192,10 @@ const Search = () => {
 
   // Users
   infoUsers();
+<<<<<<< HEAD
+=======
+
+>>>>>>> a8651a4016a3cb70310723b9f5b2f9a93dbe6c11
   return divElemt;
 };
 
