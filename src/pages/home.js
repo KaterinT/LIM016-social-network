@@ -67,6 +67,8 @@ async function urlStorage(params) {
   return await getFileURL(refStorage);
 }
 
+// console.log(urlStorage(params));
+
 /* *************** Agregar publicacion a Firebase *************** */
 async function addPublication(publication, urlsImg) {
   try {
@@ -736,7 +738,7 @@ const Home = () => {
     }
 
     if (Object.keys(filterMyPost) == 'name') {
-      //  console.log('filter user: ', filterMyPost.name);
+       console.log('filter user: ', filterMyPost.name);
       let q = query(
         collection(db, 'users'),
         where('name', '>=', filterMyPost.name.capitalize()),

@@ -96,13 +96,16 @@ export function publicationComponent(nameUser,
   }
 
   if (urls.length > 0) {
-    urls.forEach(url => {
+    urls.forEach((url) => {
       divImages.innerHTML += `
       <div class='boxFlexbtnX'>
         <button title='Delete image' id='btnDeteleImgEdit' class='hide btnDeteleImgEdit''>X</button>
         <img src='${url}' />
-      </div>
-    `;
+      </div>`;
+
+      // const btnDeteleImgEdit = divImages.getElementById('btnDeteleImgEdit');
+
+      // btnDeteleImgEdit.addEventListener('click', console.log('ha dado click al x oh súper'));
     });
   } else {
     console.log('no hay imagen');
