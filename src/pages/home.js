@@ -1,3 +1,6 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-console */
 /* eslint-disable no-return-await */
 /* eslint-disable default-case */
 /* eslint-disable no-param-reassign */
@@ -37,7 +40,6 @@ async function readUser(uid) {
   if (docSnap.exists()) {
     //  console.log('Document data:', docSnap.data());
     data = docSnap.data();
-    console.log('User data:', data);
     sessionStorage.setItem('user', JSON.stringify(data));
   } else {
     //  doc.data() will be undefined in this case
@@ -89,18 +91,19 @@ async function addPublication(publication, urlsImg) {
   }
 }
 
-/* *************** Eliminar publicacion de Firebase *************** */
+/* *************** Eliminar url de Firebase *************** */
 
 export const deletePublication = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
-export const deleteUrl = (idPublicationRef) => deleteDoc(doc(db, 'publications', idPublicationRef));
+// export const deleteUrl = (idPublicationRef) =>
+// deleteDoc(doc(db, 'publications', idPublicationRef));
 
 /* *************** Editar publicacion de Firebase *************** */
 
-export const editPublication = (idPublicationRef, postEdit) => {
+export const editPublication = (idPublicationRef, postEdit, urls) => {
   const publiUpdate = doc(db, 'publications', idPublicationRef);
   return updateDoc(publiUpdate, {
     publication: postEdit,
-    // urlsImages: postEdit,
+    urlsImages: urls,
   });
 };
 
@@ -153,6 +156,9 @@ const Home = () => {
 
       <div id='publications' class='Publications'>
         <div class='PublicationsContent'>
+          <div id="scrollUpContainer" class="hideBtnUp scrollUpContainer">
+            <button id="btnScrollTop" class="btnScrollTop"><img src="img/Icons/Up.png"></button>
+          </div>
           <div class='btnPublic'>
             <div class='btnsPublic'>
               <div class='flexFilterBtns'>
@@ -161,6 +167,13 @@ const Home = () => {
               </div>
               <input type='text' id='SearchName' name='firstname' class='SearchName' placeholder='🔍 User Name..'>
             </div>
+            <div class='btnMode'>
+              <button id='switch' class='switch'>
+                <span><img title='Light mode' id='light' src='img/Icons/sun.png' alt='Light mode'></span>
+                <span><img title='Dark mode' id='Dark' src='img/Icons/moon.png' alt='Dark mode'></span>
+              </button>
+            </div>
+
             <img id='NewPost' class='NewPost' src='img/Icons/WhiteBorder/PlusCircle1.png' alt='Nex Publication'>
           </div>
           <div class='boxPublic'>
@@ -202,7 +215,6 @@ const Home = () => {
             </div>
           </div>
           <div id='publicado'>
-
           </div>
         </div>
         </div>
@@ -239,8 +251,12 @@ const Home = () => {
   </main>`;
   containerHome.innerHTML = viewHome;
 
+  // btn Scroll Up
+  const scrollUpContainer = containerHome.querySelector('#scrollUpContainer');
+  const scrollUpbtn = containerHome.querySelector('#btnScrollTop');
+
   //  Div - Filters
-  const boxPosts = containerHome.querySelector('#publicado');
+  const divPublicado = containerHome.querySelector('#publicado');
   const btnAllPost = containerHome.querySelector('.btnAllPost');
   const btnMyPost = containerHome.querySelector('.btnMyPost');
   const SearchName = containerHome.querySelector('.SearchName');
@@ -251,10 +267,36 @@ const Home = () => {
   //  Alert no more two posts
   const alertNoMoreImgs = containerHome.querySelector('#modalNoMoreTwoPost');
   const check = document.getElementById('modalCheckPost');
+
+  // Dark and Light mode
+  const btnSwitch = containerHome.querySelector('#switch');
+  const boxFather = containerHome.querySelector('#publicado');
+
+  // btn Scroll Up functions
+  const getPixels = () => document.documentElement.scrollTop || document.body.scrollTop;
+  const up = () => {
+    if (getPixels() > 0) {
+      requestAnimationFrame(up);
+      // eslint-disable-next-line no-restricted-globals
+      scrollTo(0, getPixels() - (getPixels() / 20));
+    }
+  };
+
+  const indicatedScroll = () => {
+    if (getPixels() > 80) {
+      scrollUpContainer.classList.remove('hideBtnUp');
+    } else {
+      scrollUpContainer.classList.add('hideBtnUp');
+    }
+  };
+
+  scrollUpbtn.addEventListener('click', up);
+  window.addEventListener('scroll', indicatedScroll);
+
   //  Clear Posts
   function clearBoxPosts() {
-    while (boxPosts.firstChild) {
-      boxPosts.firstChild.remove();
+    while (divPublicado.firstChild) {
+      divPublicado.firstChild.remove();
     }
   }
 
@@ -309,6 +351,15 @@ const Home = () => {
     document
       .getElementById('boxPublications')
       .classList.replace('NoneboxPublications', 'boxPublications');
+    up();
+    window.addEventListener('scroll', indicatedScroll);
+  });
+
+  // Dark and Light mode function
+  btnSwitch.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.classList.toggle('dark');
+    btnSwitch.classList.toggle('active');
   });
 
   // Pre-view image in new post
@@ -353,7 +404,6 @@ const Home = () => {
   let countFiles = 0;
   const divCamera = containerHome.querySelector('.inputFilePost');
   divCamera.addEventListener('change', (e) => {
-    //  files = Object.values(e.target.files);
     countFiles = imgPreview.childElementCount + 1;
     console.log('countFiles', countFiles);
 
@@ -361,16 +411,15 @@ const Home = () => {
       alertNoMoreImgs.classList.remove('hide');
     }
 
-    if (countFiles == 1) {
+    if (countFiles === 1) {
       cleanModal();
-      // Convert files in array with Object.values
       files = Object.values(e.target.files);
       //  console.log('1 archivo', files);
       previewPost(files[0]);
       arr.push(files[0]);
     }
 
-    if (countFiles == 2) {
+    if (countFiles === 2) {
       cleanModal();
       files = Object.values(e.target.files);
       console.log('2 archivos arr', files);
@@ -388,6 +437,7 @@ const Home = () => {
     containerHome.querySelector('#texta2').value = '';
   };
 
+  // Clean preview images
   const deleteImage = () => {
     files = [];
     arr = [];
@@ -398,6 +448,7 @@ const Home = () => {
     }
   };
 
+  // Clean one image in preview
   const deleteOneImage = () => {
     files = [];
     arr = [];
@@ -420,12 +471,11 @@ const Home = () => {
   /* *************** evento de añadir publicación con save *************** */
 
   containerHome.querySelector('#btnSave').addEventListener('click', (e) => {
-    if (countFiles == 0) {
+    if (countFiles === 0) {
       console.log('0 imagen');
       files = [];
     }
     e.preventDefault();
-    const divPublicado = containerHome.querySelector('#publicado');
     const publication = containerHome.querySelector('#texta2').value;
     containerHome.querySelector('#texta2').value = containerHome.querySelector('#texta2').defaultValue;
 
@@ -445,7 +495,7 @@ const Home = () => {
 
       // Saved images in storage
       console.log('files:', files);
-      if (files.length == 0) {
+      if (files.length === 0) {
         // Add publication in firebase store
         console.log('agregando post con 0 imagen');
         cleanModal();
@@ -453,7 +503,7 @@ const Home = () => {
         reedPublications({});
       }
 
-      if (files.length == 1) {
+      if (files.length === 1) {
         console.log('caso 1');
         const p1 = urlStorage(files[0]);
         cleanModal();
@@ -466,12 +516,12 @@ const Home = () => {
           .catch(console.log);
       }
 
-      if (files.length == 2) {
+      if (files.length === 2) {
         console.log('caso 2');
-        const p_1 = urlStorage(files[0]);
-        const p_2 = urlStorage(files[1]);
+        const p1 = urlStorage(files[0]);
+        const p2 = urlStorage(files[1]);
         cleanModal();
-        Promise.all([p_1, p_2])
+        Promise.all([p1, p2])
           .then((values) => {
             console.log('caso 2222222222222222', values);
             addPublication(publication, values);
@@ -536,7 +586,8 @@ const Home = () => {
   readUser(uid())
     //  eslint-disable-next-line no-sequences
     .then((value) => {
-      infoUser(value), reedPublications(value);
+      infoUser(value);
+      reedPublications(value);
     })
     .catch((error) => console.log(error));
 
@@ -555,7 +606,6 @@ const Home = () => {
       doc(db, 'users', documentFirebase.data().author),
     );
     if (userOfPublication.exists()) {
-      const divPublicado = containerHome.querySelector('#publicado');
       const nameUser = userOfPublication.data().name;
       const publicationText = documentFirebase.data().publication;
 
@@ -576,11 +626,11 @@ const Home = () => {
       const userCurrent = sessionStorage.getItem('key');
       const myPost = authorPublication === userCurrent;
       const photo = userOfPublication.data().photo;
-      const urls = documentFirebase.data().urlsImages;
+      let urls = documentFirebase.data().urlsImages;
 
       console.log('urls', documentFirebase.data());
 
-      /* ***** Agrega una nueva publicación por usuario de primera ***** */
+      /* ***** Agrega una nueva publicación por usuario colocandola de primera ***** */
 
       divPublicado.prepend(
         publicationComponent(
@@ -603,29 +653,56 @@ const Home = () => {
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
       const btnsDeleteImgs = document.querySelectorAll('[data-x]');
       const btnCameraEdit = document.querySelector('#AddPhotoPostEdit');
-      console.log('btnsDeleteImgs :',btnsDeleteImgs);
+      console.log('btnsDeleteImgs :', btnsDeleteImgs);
+
+      // Btn X
+      function btnXfunction(twoImages) {
+        const twoImagesPreview = twoImages.querySelectorAll('.boxFlexbtnX');
+        twoImagesPreview.forEach((img) => {
+          const btnX = img.querySelector('#btnDeteleImgEdit');
+          btnX.classList.add('hide');
+        });
+      }
 
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
         if (myPost && urls[0] !== '') {
-          // const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
-          btnCameraEdit.classList.remove('hide');
-          // btnsDeleteImgs.classList.remove('hide');
+          // btnCameraEdit.classList.remove('hide');
           btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
           textPublication.select();
-          console.log(btnsDeleteImgs);
+          // Btn X
+          const twoImages = e.target.parentNode.parentNode.parentNode;
+          const twoImagesPreview = twoImages.querySelectorAll('.boxFlexbtnX');
+          twoImagesPreview.forEach((element) => {
+            const btnX = element.querySelector('#btnDeteleImgEdit');
+            btnX.classList.remove('hide');
+            btnX.addEventListener('click', (x) => {
+              e.preventDefault();
+              cleanModal();
+              //  const divDelete = e.target.dataset.ref;
+              const divDelete = x.target.parentNode;
+              const imgToDelete = divDelete.getElementsByTagName('img')[0].src;
+              console.log('🚀 ~ file: home.js ~ line 641 ~ btnX.addEventListener ~ imgToDelete', imgToDelete);
+              console.log('🚀 ~ file: home.js ~ line 642 ~ btnX.addEventListener ~ urls', urls);
+              // eslint-disable-next-line space-before-function-paren
+              urls = urls.filter((value) => { return value != imgToDelete; });
+              console.log('🚀 ~ file: home.js ~ line 642 ~ btnX.addEventListener ~ newUrls', urls);
+              //  Delete div publication
+              divDelete.remove();
+            });
+          });
         }
+
         if (myPost && urls[0] == '') {
-          btnCameraEdit.classList.remove('hide');
+          // btnCameraEdit.classList.remove('hide');
           btnsDeleteImgs.classList.add('hide');
           btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
           textPublication.select();
         }
       });
-      //  console.log(editsPublication);
 
       // btnsDeleteImgs.addEventListener('click', (e) => {
       //   e.preventDefault();
@@ -646,81 +723,37 @@ const Home = () => {
       savePublication.addEventListener('click', (e) => {
         e.preventDefault();
         //  editPublication(idPublication, publicationText);
-        editPublication(idPublication, textPublication.value);
+        editPublication(idPublication, textPublication.value, urls);
         textPublication.disabled = true;
         btnCameraEdit.classList.add('hide');
         btnsEditPostBox.classList.add('hide');
-        btnsDeleteImgs.classList.add('hide');
+        // btnsDeleteImgs.classList.add('hide');
+        const twoImages = e.target.parentNode.parentNode.parentNode;
+        btnXfunction(twoImages);
       });
 
       /* ***** cancel edit publication ***** */
       cancelPublication.addEventListener('click', (e) => {
+        // Btn X
+        const twoImages = e.target.parentNode.parentNode.parentNode;
+        const twoImagesPreview = twoImages.querySelectorAll('.boxFlexbtnX');
+        twoImagesPreview.forEach((img) => {
+          const btnX = img.querySelector('#btnDeteleImgEdit');
+          btnX.classList.add('hide');
+        });
         //  e.preventDefault();
         //  editPublication(idPublication, publicationText);
         textPublication.disabled = true;
         btnCameraEdit.classList.add('hide');
         btnsEditPostBox.classList.add('hide');
-        btnsDeleteImgs.classList.add('hide');
-
+        // btnsDeleteImgs.classList.add('hide');
         const cancelEdit = e.target.dataset.cancel;
-
         //  eslint-disable-next-line eqeqeq
         if (cancelEdit == idPublication) {
           console.log('e.target', cancelEdit);
           readAPost(idPublication, textPublication);
         }
       });
-
-      /* ***** delete publication ***** */
-      //  import modal
-      const cerrar = document.getElementById('close');
-      const modalC = document.getElementById('modal-container');
-      const btnModalConfirmDelete = document.getElementById('btn-modal-yes');
-      const btnModalCancel = document.getElementById('btn-modal-no');
-
-      //  delete
-      let deleted = '';
-      divPublicado
-        .querySelector('.btnDelete')
-        .addEventListener('click', (event) => {
-          deleted = event.target.dataset.ref;
-          //  INIT - Modal for Vericate Delete Publication
-          let stateModal = false;
-          //  view modal
-          modalC.style.opacity = '1';
-          modalC.style.visibility = 'visible';
-          //  close modal
-          cerrar.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            deleted = '';
-            return stateModal;
-          });
-          //  cancel modal
-          btnModalCancel.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            deleted = '';
-            return stateModal;
-          });
-          //  confirm delete - YES
-          btnModalConfirmDelete.addEventListener('click', () => {
-            modalC.style.opacity = '0';
-            modalC.style.visibility = 'hidden';
-            stateModal = true;
-            //  Delete publication for Firebase
-            if (deleted !== '') {
-              let removeDiv = divPublicado.querySelector(`#${deleted}`);
-              //  Delete div publication
-              deletePublication(deleted);
-              removeDiv.remove();
-              deleted = '';
-              removeDiv = '';
-            }
-            return stateModal;
-          });
-          //  END - Modal for Vericate Delete Publication
-        });
     } else {
       console.log('No such document!');
     }
