@@ -100,7 +100,7 @@ export const editPublication = (idPublicationRef, postEdit) => {
   const publiUpdate = doc(db, 'publications', idPublicationRef);
   return updateDoc(publiUpdate, {
     publication: postEdit,
-    urls: postEdit,
+    // urlsImages: postEdit,
   });
 };
 
@@ -601,18 +601,21 @@ const Home = () => {
       const savePublication = document.querySelector('button[data-save]');
       const cancelPublication = document.querySelector('button[data-cancel]');
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
-      const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
+      const btnsDeleteImgs = document.querySelectorAll('[data-x]');
       const btnCameraEdit = document.querySelector('#AddPhotoPostEdit');
+      console.log('btnsDeleteImgs :',btnsDeleteImgs);
 
       /* ***** Block btns of save and cancel edit publication ***** */
       editsPublication.addEventListener('click', (e) => {
         e.preventDefault();
         if (myPost && urls[0] !== '') {
+          // const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
           btnCameraEdit.classList.remove('hide');
-          btnsDeleteImgs.classList.remove('hide');
+          // btnsDeleteImgs.classList.remove('hide');
           btnsEditPostBox.classList.remove('hide');
           textPublication.disabled = false;
           textPublication.select();
+          console.log(btnsDeleteImgs);
         }
         if (myPost && urls[0] == '') {
           btnCameraEdit.classList.remove('hide');
@@ -623,6 +626,21 @@ const Home = () => {
         }
       });
       //  console.log(editsPublication);
+
+      // btnsDeleteImgs.addEventListener('click', (e) => {
+      //   e.preventDefault();
+      //   // cleanModal();
+      //   //  const divDelete = e.target.dataset.ref;
+      //   const divDelete = e.target.parentElement;
+      //   divDelete.parentNode.removeChild(divDelete);
+      //   // const removeImg = imgPreview.querySelector(`#${divDelete}`);
+      //   //  Delete div publication
+      //   // removeImg.remove();
+      //   // deleteOneImage();
+      //   // editPublication(idPublication, textPublication.value);
+      //   console.log(divDelete);
+      //   console.log('prueba en home de x');
+      // });
 
       /* ***** save edit publication ***** */
       savePublication.addEventListener('click', (e) => {
@@ -718,7 +736,7 @@ const Home = () => {
 
     // Validate View Search
     const userSearchSession = JSON.parse(sessionStorage.getItem('userSearch'));
-    let nameSearch = userSearchSession.name;
+    const nameSearch = userSearchSession.name;
     if (nameSearch !== '') {
       const q = query(
         collection(db, 'users'),
@@ -753,7 +771,7 @@ const Home = () => {
       const q = query(
         collection(db, 'users'),
         where('name', '>=', filterMyPost.name.capitalize()),
-        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`), 
+        where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`),
       );
 
       // console.log('q', q);
