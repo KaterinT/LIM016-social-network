@@ -28,8 +28,15 @@ import {
   updateDoc,
   query,
   where,
+  arrayUnion,
+  arrayRemove,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
+
+import {
+  getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable,
+// eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCk8ZsvxtMvGdSDjbG9qZwEtjRbW7ub9J4',
@@ -46,6 +53,8 @@ const provider = new GoogleAuthProvider(app);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
+// const storageRef = ref(storage);
 
 export {
   app,
@@ -72,4 +81,11 @@ export {
   query,
   where,
   updateDoc,
+  arrayUnion,
+  arrayRemove,
+  storage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  uploadBytesResumable,
 };

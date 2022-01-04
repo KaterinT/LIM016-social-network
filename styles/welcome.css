@@ -5,7 +5,6 @@ body {
     url("../img/Photos/Gif1.gif");
   color: beige;
   background-size: cover;
-
 }
 
 a {
@@ -177,12 +176,12 @@ a {
 }
 
 @media screen and (min-height: 630px) and (min-height: 640px){
-  .hero-text {
+  /* .hero-text {
     height: 640px;
-  }
+  } */
   .logoHome {
-    width: 40%;
-    margin: 8% 0;
+    width: 30%;
+    /* margin: 8% 0; */
     border-radius: 100%;
   }
 }
