@@ -22,6 +22,7 @@ import {
   deleteDoc,
   query,
   where,
+  orderBy,
 } from '../utils/firebaseconfig.js';
 
 import {
@@ -632,7 +633,7 @@ const Home = () => {
 
       /* ***** Agrega una nueva publicación por usuario colocandola de primera ***** */
 
-      divPublicado.prepend(
+      divPublicado.appendChild(
         publicationComponent(
           nameUser,
           myPost,
@@ -783,7 +784,7 @@ const Home = () => {
         uidUserFilter = element.data().uid;
       });
       const qa = query(
-        collection(db, 'publications'),
+        collection(db, 'publications'), orderBy('dateCreated', 'desc'),
         where('author', '==', uidUserFilter),
       );
       querySnapshotPublications = await getDocs(qa);
@@ -793,7 +794,7 @@ const Home = () => {
 
     if (Object.keys(filterMyPost) == 'my') {
       const q = query(
-        collection(db, 'publications'),
+        collection(db, 'publications'), orderBy('dateCreated', 'desc'),
         where('author', '==', sessionStorage.getItem('key')),
       );
       querySnapshotPublications = await getDocs(q);
@@ -802,7 +803,7 @@ const Home = () => {
     if (Object.keys(filterMyPost) == 'name') {
       //  console.log('filter user: ', filterMyPost.name);
       const q = query(
-        collection(db, 'users'),
+        collection(db, 'users'), 
         where('name', '>=', filterMyPost.name.capitalize()),
         where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`),
       );
@@ -815,7 +816,7 @@ const Home = () => {
       });
 
       const qa = query(
-        collection(db, 'publications'),
+        collection(db, 'publications'), orderBy('dateCreated', 'desc'),
         where('author', '==', uidUserFilter),
       );
 
