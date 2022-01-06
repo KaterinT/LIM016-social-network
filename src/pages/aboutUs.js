@@ -46,7 +46,7 @@ const AboutUs = () => {
             <a target="_blank" href="mailto:tellourakaterin@gmail.com">
               <img src="img/RedesSociales/gmail-120.png" class="redSocial" alt="Gmail">
             </a>
-            <a target="_blank" href=""><img src="img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn"></a>
+            <a target="_blank" href="https://www.linkedin.com/in/katerin-tello-ura/"><img src="img/RedesSociales/linkedin-120.png" class="redSocial" alt="LinkenIn"></a>
             <p>Katerin Tello</p>
           </div>
           <div class="Founder-Box-Box">
