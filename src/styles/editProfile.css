@@ -1,4 +1,23 @@
 #EditProfile {
+<<<<<<< HEAD
+  /* background-color: rgb(50, 88, 172); */
+  width: 99vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+#Profile {
+  background: #c4ddbf;
+  width: 90vw;
+  height: 95vh;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-rows: 0.5fr 0.4fr 2.4fr 0.4fr 0.4fr 1.4fr;
+=======
   display: flex;
   color: #000;
   justify-content: center;
@@ -11,6 +30,7 @@
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
   grid-template-rows: 0fr 0fr 0fr 0fr 0fr 0.05fr;
+>>>>>>> maindeploy
   gap: 0px 0px;
   grid-auto-flow: row;
 }
@@ -18,14 +38,30 @@
 /* Title: Edit Profile */
 .titleEditProfile {
   grid-area: 1 / 1 / 2 / 3;
+<<<<<<< HEAD
+  /* border: 1px solid black; */
+  align-self: center;
+  justify-self: center;
+  margin-top: 20px;
+=======
   align-self: center;
   justify-self: center;
   margin-top: 6%;
+>>>>>>> maindeploy
   margin-bottom: 20px;
 }
 
 .titleEditProfile h1 {
   font-weight: bold;
+<<<<<<< HEAD
+}
+
+.containerSection {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+=======
   color: beige;
 }
 
@@ -34,14 +70,22 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+>>>>>>> maindeploy
 }
 
 /* First Mobile - Body: Edit Profile */
 .bodyEditProfile {
   grid-area: 2 / 1 / 7 / 3;
+<<<<<<< HEAD
+  /* border: 1px solid black; */
+  background: #3e6c43;
+  width: 30vw;
+  height: 80vh;
+=======
   background-color: #3e6c439e;
   width: 34vw;
   height: 88vh;
+>>>>>>> maindeploy
   border-radius: 30px;
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
@@ -50,12 +94,19 @@
   grid-auto-flow: row;
   align-self: center;
   justify-self: center;
+<<<<<<< HEAD
+=======
   font-size: small;
   box-shadow: #000000 0px 4px 16px, rgb(0 0 0) 0px 8px 32px;
+>>>>>>> maindeploy
 }
 
 .nameUser {
   grid-area: 2 / 1 / 3 / 3;
+<<<<<<< HEAD
+  /* border: 1px solid black; */
+=======
+>>>>>>> maindeploy
   justify-self: center;
   align-self: center;
   display: flex;
@@ -66,7 +117,10 @@
   width: 20vw;
   height: 7vh;
   margin-top: 10px;
+<<<<<<< HEAD
+=======
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+>>>>>>> maindeploy
 }
 
 .nameUser h3 {
@@ -77,6 +131,10 @@
 /* Card: Interests and Photo Profile */
 .profileAndInterest {
   grid-area: 3 / 1 / 4 / 3;
+<<<<<<< HEAD
+  /* border: 1px solid black; */
+=======
+>>>>>>> maindeploy
 }
 
 .interests {
@@ -84,14 +142,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+<<<<<<< HEAD
+  align-items:flex-end;
+  /* border: 1px solid black; */
+=======
   align-items: flex-end;
+>>>>>>> maindeploy
 }
 
 .interests img {
   width: 40%;
+<<<<<<< HEAD
+=======
   border: 3px solid rgb(14, 44, 6);
   border-radius: 100%;
   background: #000;
+>>>>>>> maindeploy
 }
 
 /* Photo: Photo Profile */
@@ -100,6 +166,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
+  /* background: #3a515e; */
+}
+
+.photoProfile img {
+  width: 50%;
+  border-radius: 100%;
+  border-width: 5px;
+  border-color: rgb(10, 24, 6);
+  border-style: solid;
+}
+
+/* Country */
+.countryUser {
+  grid-area: 4 / 1 / 5 / 3;
+  /* border: 1px solid black; */
+=======
   
 }
 
@@ -117,6 +200,7 @@
 
 .countryUser {
   grid-area: 4 / 1 / 5 / 3;
+>>>>>>> maindeploy
   color: rgb(250, 250, 250);
 }
 
@@ -124,12 +208,34 @@
   display: flex;
   flex-direction: row;
   justify-content: left;
+<<<<<<< HEAD
+  padding-top: 20px;
+  margin-left: 12%;
+=======
   align-items: center;
   margin: 0 10%;
+>>>>>>> maindeploy
 }
 
 .countryUserFlex h3 {
   margin-right: 15px;
+<<<<<<< HEAD
+}
+
+.countryUserFlex select {
+  width: 40%;
+  border-radius: 10px;
+}
+
+/* Bio */
+.titleWriteBio {
+  grid-area: 5 / 1 / 6 / 3;
+  /* border: 1px solid black; */
+  color: rgb(250, 250, 250);
+  margin-left: 12%;
+  padding-top: 20px;
+  padding-bottom: 10px;
+=======
   font-size: medium;
 }
 
@@ -155,17 +261,27 @@
   color: rgb(250, 250, 250);
   align-items: center;
   display: flex;
+>>>>>>> maindeploy
 }
 
 .bioUser {
   grid-area: 6 / 1 / 7 / 3;
+<<<<<<< HEAD
+  /* border: 1px solid black; */
+=======
   margin: 0 10%;
+>>>>>>> maindeploy
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 #texta2 {
+<<<<<<< HEAD
+  width: 23vw;
+  height: 80%;
+  border-radius: 10px;
+=======
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -173,11 +289,24 @@
   padding: 3%;
   font-weight: bold;
   box-shadow: 1px 1px 2px 1px rgb(25 27 28 / 60%);
+>>>>>>> maindeploy
 }
 
 .buttonSave {
   padding-top: 20px;
   padding-bottom: 20px;
+<<<<<<< HEAD
+}
+
+.buttonSave button {
+  height: 120%;
+  border-radius: 20px;
+  background: #a8a5a5;
+}
+
+.buttonSave h2 {
+  width: 10vw;
+=======
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -215,10 +344,48 @@
   border-radius: 10px;
   background: #a8a5a5;
   justify-content: center;
+>>>>>>> maindeploy
 }
 
 /* Section select Photo and Interest */
 .selectProfile {
+<<<<<<< HEAD
+  background-color: #3a515e;
+  width: 60%;
+  border-radius: 20px;
+}
+
+#selectInterest {
+  background-color: aqua;
+  width: 50%;
+}
+
+#selectProfile {
+  width: 50vw;
+}
+
+@media (max-width: 600px) {
+  .selectProfile {
+    display: none;
+  }
+  
+  #EditProfile {
+    width: 100vw;
+  }
+
+  #Profile {
+    width: 90vw;
+    height: 90vh;
+  }
+
+  .bodyEditProfile {
+    width: 80vw;
+    height: 70vh;
+  }
+
+  .containerSection {
+    width: 90vw;
+=======
   width: 60%;
   border-radius: 20px;
   display: flex;
@@ -496,6 +663,7 @@
   .containerSection {
     display: flex;
     flex-direction: column;
+>>>>>>> maindeploy
   }
 
   .nameUser {
@@ -505,6 +673,10 @@
     margin-left: 0px;
   }
 
+<<<<<<< HEAD
+  #texta2 {
+    width: 70vw;
+=======
 .titleEditProfile {
   grid-area: 1 / 1 / 2 / 3;
   align-self: center;
@@ -516,6 +688,7 @@
   #texta2 {
     width: 70vw;
     /* resize: none; */
+>>>>>>> maindeploy
   }
 
   .buttonSave h2 {
@@ -525,11 +698,34 @@
   .interests img {
     width: 55%;
     align-items: center;
+<<<<<<< HEAD
+=======
     margin: 4%;
+>>>>>>> maindeploy
   }
 
   .photoProfile img {
     width: 80%;
+<<<<<<< HEAD
+}
+
+.countryUserFlex {
+  justify-content: initial;
+  padding-top: 0px;
+  margin-left: 10%;
+}
+
+.countryUserFlex select {
+  width: 60%;
+}
+
+.titleWriteBio {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-left: 30px;
+}
+}
+=======
   }
 
   .countryUserFlex {
@@ -583,3 +779,4 @@
 }
 }
 
+>>>>>>> maindeploy

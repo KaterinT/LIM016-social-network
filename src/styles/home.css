@@ -14,6 +14,9 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+<<<<<<< HEAD
+/************* PAGES GENERALS*****************/
+=======
 /***************** PAGE HOME FLEX ******************/
 .Home {
   display: flex;
@@ -175,11 +178,14 @@ body {
 .AddPhotoPost img {
   width: 30%;
 }
+>>>>>>> maindeploy
 
 ::-webkit-file-upload-button {
   width: 100%;
   height: 100%;
 }
+<<<<<<< HEAD
+=======
 .inputFilePost {
   position: absolute;
   width: 2%;
@@ -188,6 +194,7 @@ body {
   border-radius: 100%;
   opacity: 0;
 }
+>>>>>>> maindeploy
 
 .inputFilePostEdit {
   position: absolute;
@@ -639,6 +646,10 @@ body {
   .Avatar .linea2 {
     display: none;
   }
+<<<<<<< HEAD
+}
+
+=======
 
   .btnsPublic {
     display: flex;
@@ -705,6 +716,7 @@ body {
   .btnScrollTop {
     margin-top: -184%;
   }
+>>>>>>> maindeploy
 
   .scrollUpContainer {
     display: flex;

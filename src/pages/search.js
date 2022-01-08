@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable eqeqeq */
 /* eslint-disable func-names */
 /* eslint-disable no-use-before-define */

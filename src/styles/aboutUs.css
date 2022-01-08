@@ -7,7 +7,11 @@ li::marker {
 
 #AboutUs {
   background-color: rgb(255, 255, 255);
+<<<<<<< HEAD
+  height: 1000px;
+=======
   /* height: 1000px; */
+>>>>>>> maindeploy
   margin: 0 20%;
   box-shadow: 3px 3px 18px 3px black;
   font-weight: bold;
@@ -47,7 +51,10 @@ li::marker {
 .LogoLarge {
   width: 100%;
   box-shadow: 0 0 18px 0 black;
+<<<<<<< HEAD
+=======
   margin-top: 6%;
+>>>>>>> maindeploy
 }
 
 .FounderImg {
@@ -97,10 +104,13 @@ a img {
   a img {
     width: 10%;
   }
+<<<<<<< HEAD
+=======
 
   .LogoLarge {
     width: 100%;
     box-shadow: 0 0 18px 0 black;
     margin-top: 0%;
   }
+>>>>>>> maindeploy
 }

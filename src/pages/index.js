@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
 import Welcome from './welcome.js';
 import Signin from './signin.js';
 import NavHome from './nav.js';
