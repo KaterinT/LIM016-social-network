@@ -72,8 +72,6 @@ async function urlStorage(params) {
   return await getFileURL(refStorage);
 }
 
-// console.log(urlStorage(params));
-
 /* *************** Agregar publicacion a Firebase *************** */
 async function addPublication(publication, urlsImg) {
   try {
@@ -651,9 +649,8 @@ const Home = () => {
       const savePublication = document.querySelector('button[data-save]');
       const cancelPublication = document.querySelector('button[data-cancel]');
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
-      const btnsDeleteImgs = document.querySelectorAll('[data-x]');
+      const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
       const btnCameraEdit = document.querySelector('#AddPhotoPostEdit');
-      console.log('btnsDeleteImgs :', btnsDeleteImgs);
 
       // Btn X
       function btnXfunction(twoImages) {
@@ -703,21 +700,6 @@ const Home = () => {
           textPublication.select();
         }
       });
-
-      // btnsDeleteImgs.addEventListener('click', (e) => {
-      //   e.preventDefault();
-      //   // cleanModal();
-      //   //  const divDelete = e.target.dataset.ref;
-      //   const divDelete = e.target.parentElement;
-      //   divDelete.parentNode.removeChild(divDelete);
-      //   // const removeImg = imgPreview.querySelector(`#${divDelete}`);
-      //   //  Delete div publication
-      //   // removeImg.remove();
-      //   // deleteOneImage();
-      //   // editPublication(idPublication, textPublication.value);
-      //   console.log(divDelete);
-      //   console.log('prueba en home de x');
-      // });
 
       /* ***** save edit publication ***** */
       savePublication.addEventListener('click', (e) => {

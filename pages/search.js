@@ -167,6 +167,7 @@ const Search = () => {
       printUser(photo, fullname, country, interests, bio);
     });
   }
+
   // Print One card user
   function printUser(photo, fullname, country, interests, bio) {
     divCardUser.innerHTML += `
@@ -220,6 +221,7 @@ const Search = () => {
 
   // Users
   infoUsers();
+
   return divElemt;
 };
 
