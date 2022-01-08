@@ -14,9 +14,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-<<<<<<< HEAD
-/************* PAGES GENERALS*****************/
-=======
 /***************** PAGE HOME FLEX ******************/
 .Home {
   display: flex;
@@ -178,14 +175,11 @@ body {
 .AddPhotoPost img {
   width: 30%;
 }
->>>>>>> maindeploy
 
 ::-webkit-file-upload-button {
   width: 100%;
   height: 100%;
 }
-<<<<<<< HEAD
-=======
 .inputFilePost {
   position: absolute;
   width: 2%;
@@ -194,7 +188,6 @@ body {
   border-radius: 100%;
   opacity: 0;
 }
->>>>>>> maindeploy
 
 .inputFilePostEdit {
   position: absolute;
@@ -368,15 +361,11 @@ body {
   font-size: small;
   padding: 0 9%;
   color: rgb(206, 206, 13);
-  margin: 2%;
 }
-.NewsContainer a:hover {
-  border-radius: 10px;
-  transform: scale(1.1);
-  box-shadow: 1px 1px 2px 1px rgba(217, 218, 219, 0.6);
-}
+
 .News {
   padding: 2% 7%;
+  
 }
 
 .save {
@@ -646,10 +635,6 @@ body {
   .Avatar .linea2 {
     display: none;
   }
-<<<<<<< HEAD
-}
-
-=======
 
   .btnsPublic {
     display: flex;
@@ -696,8 +681,7 @@ body {
     padding: 2% 0% 4% 3%;
     width: 100%;
     background-color: #c4c4c4;
-    /* top: 86%; */
-    top: 89%;
+    top: 86%;
     z-index: 2;
   }
 
@@ -716,7 +700,6 @@ body {
   .btnScrollTop {
     margin-top: -184%;
   }
->>>>>>> maindeploy
 
   .scrollUpContainer {
     display: flex;

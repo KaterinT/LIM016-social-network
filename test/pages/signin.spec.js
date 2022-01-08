@@ -5,16 +5,12 @@ import { handleCurrentUser } from '../../src/pages/signin';
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
-
 } from '../../src/utils/firebaseconfig.js';
 
 jest.mock('../../src/utils/firebaseconfig.js');
 
 describe('SignIn', () => {
   it('Click Sing In call function Sign In', () => {
-    document.body.innerHTML = `
-    <div id='modalSignIn'></div>
-    `;
     const signInElem = SignIn();
     signInElem.querySelector('#email').value = 'mariana.guanda@mail.com';
     signInElem.querySelector('#password').value = '123456';
@@ -32,7 +28,12 @@ describe('SignIn with Google', () => {
     const btn = signInElem.querySelector('#btn-signin-google');
     const evt = new Event('click');
     btn.dispatchEvent(evt);
-    expect(signInWithPopup.mock.calls).toHaveLength(1);
+    const id = '8cm4l6x9m8XLzHcQnUzoZUhciwk0';
+    // console.log('signInWithPopup = ', signInWithPopup.mock.results[0].value);
+    signInWithPopup.mock.results[0].value.then((data) => {
+      // console.log('data', data);
+      expect(data).toBe(id);
+    });
   });
 });
 

@@ -101,18 +101,11 @@ export function publicationComponent(nameUser,
   if (urls.length > 0) {
     urls.forEach((url) => {
       divImages.innerHTML += `
-      <div class='boxFlexbtnX' data-imgPost ='boxFlexbtnX'>
+      <div class='boxFlexbtnX'>
         <button title='Delete image' id='btnDeteleImgEdit' class='hide btnDeteleImgEdit''>X</button>
         <img src='${url}'/>
       </div>
     `;
-
-      // ** quitar imagen con x*****
-
-      // const btnsDeleteImg = divImages.querySelector('#btnDeteleImgEdit');
-      // btnsDeleteImg.addEventListener('change',
-      //   console.log('prueba en home de x'));
-      // ***************************
     });
   } else {
     console.log('no hay imagen');

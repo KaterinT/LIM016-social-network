@@ -22,7 +22,6 @@ import {
   deleteDoc,
   query,
   where,
-  orderBy,
 } from '../utils/firebaseconfig.js';
 
 import {
@@ -72,8 +71,6 @@ async function urlStorage(params) {
   await uploadBytes1(refStorage, params);
   return await getFileURL(refStorage);
 }
-
-// console.log(urlStorage(params));
 
 /* *************** Agregar publicacion a Firebase *************** */
 async function addPublication(publication, urlsImg) {
@@ -633,7 +630,7 @@ const Home = () => {
 
       /* ***** Agrega una nueva publicación por usuario colocandola de primera ***** */
 
-      divPublicado.appendChild(
+      divPublicado.prepend(
         publicationComponent(
           nameUser,
           myPost,
@@ -652,9 +649,8 @@ const Home = () => {
       const savePublication = document.querySelector('button[data-save]');
       const cancelPublication = document.querySelector('button[data-cancel]');
       const btnsEditPostBox = document.querySelector('.btnsEditContainer');
-      const btnsDeleteImgs = document.querySelectorAll('[data-x]');
+      const btnsDeleteImgs = document.querySelector('#btnDeteleImgEdit');
       const btnCameraEdit = document.querySelector('#AddPhotoPostEdit');
-      console.log('btnsDeleteImgs :', btnsDeleteImgs);
 
       // Btn X
       function btnXfunction(twoImages) {
@@ -704,21 +700,6 @@ const Home = () => {
           textPublication.select();
         }
       });
-
-      // btnsDeleteImgs.addEventListener('click', (e) => {
-      //   e.preventDefault();
-      //   // cleanModal();
-      //   //  const divDelete = e.target.dataset.ref;
-      //   const divDelete = e.target.parentElement;
-      //   divDelete.parentNode.removeChild(divDelete);
-      //   // const removeImg = imgPreview.querySelector(`#${divDelete}`);
-      //   //  Delete div publication
-      //   // removeImg.remove();
-      //   // deleteOneImage();
-      //   // editPublication(idPublication, textPublication.value);
-      //   console.log(divDelete);
-      //   console.log('prueba en home de x');
-      // });
 
       /* ***** save edit publication ***** */
       savePublication.addEventListener('click', (e) => {
@@ -784,7 +765,7 @@ const Home = () => {
         uidUserFilter = element.data().uid;
       });
       const qa = query(
-        collection(db, 'publications'), orderBy('dateCreated', 'desc'),
+        collection(db, 'publications'),
         where('author', '==', uidUserFilter),
       );
       querySnapshotPublications = await getDocs(qa);
@@ -794,7 +775,7 @@ const Home = () => {
 
     if (Object.keys(filterMyPost) == 'my') {
       const q = query(
-        collection(db, 'publications'), orderBy('dateCreated', 'desc'),
+        collection(db, 'publications'),
         where('author', '==', sessionStorage.getItem('key')),
       );
       querySnapshotPublications = await getDocs(q);
@@ -803,7 +784,7 @@ const Home = () => {
     if (Object.keys(filterMyPost) == 'name') {
       //  console.log('filter user: ', filterMyPost.name);
       const q = query(
-        collection(db, 'users'), 
+        collection(db, 'users'),
         where('name', '>=', filterMyPost.name.capitalize()),
         where('name', '<=', `${filterMyPost.name.capitalize()}\uf8ff`),
       );
@@ -816,7 +797,7 @@ const Home = () => {
       });
 
       const qa = query(
-        collection(db, 'publications'), orderBy('dateCreated', 'desc'),
+        collection(db, 'publications'),
         where('author', '==', uidUserFilter),
       );
 

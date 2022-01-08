@@ -40,12 +40,8 @@ export const changeTmp = (hash) => {
     //   return sectionMain.appendChild(components[id]());
     // }
     case '#/home': {
-      if (handleCurrent()) {
-        headerNav.appendChild(components.nav());
-        sectionMain.appendChild(components.home());
-      } else {
-        sectionMain.appendChild(components.signin());
-      }
+      headerNav.appendChild(components.nav());
+      sectionMain.appendChild(components.home());
       break;
     }
 
