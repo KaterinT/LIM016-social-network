@@ -1,10 +1,8 @@
 /* eslint-disable import/no-duplicates */
 import SignIn from '../../src/pages/signin';
-import { handleCurrentUser } from '../../src/pages/signin';
 
 import {
   signInWithEmailAndPassword,
-  signInWithPopup,
 } from '../../src/utils/firebaseconfig.js';
 
 jest.mock('../../src/utils/firebaseconfig.js');

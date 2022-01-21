@@ -1,6 +1,6 @@
 // import { signInWithEmailAndPassword, signInWithPopup } from '../utils/firebaseconfig.js';
 
-// export const signIn = 
+// export const signIn =
 // (auth, email, password) => signInWithEmailAndPassword(auth, email, password);
 
 // export const signInWithGmail = (auth, provider) => {
