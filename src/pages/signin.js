@@ -1,21 +1,5 @@
-/* eslint-disable no-console */
-import {
-  signInWithEmailAndPassword,
-  provider,
-  auth,
-  signInWithPopup,
-  doc,
-  getDoc,
-  db,
-} from '../utils/firebaseconfig.js';
-// message of errorCode
-export const handleError = (error) => {
-  const errorCode = error.code;
-  const errorMessage = error.message;
-  console.log('error en signin', errorMessage, errorCode);
-  document
-    .getElementById('modalSignIn')
-    .classList.replace('modalSignIn', 'alertMessageSignIn');
+// import { signInWithGmail } from '../view-controller/signin-controller.js';
+import { signInWithEmailAndPassword, provider, auth } from '../utils/firebaseconfig.js';
 
   document.getElementById('errormessage').innerHTML = errorCode;
 };
@@ -74,6 +58,7 @@ export const handleSignin = (e) => {
       // console.log('userCredential.user.uid:', userCredential.user.uid);
       handleCurrent(a);
     })
+<<<<<<< HEAD
     .catch(handleError);
 };
 
@@ -111,6 +96,12 @@ export const handleSigninGoogle = (e) => {
       readUser(e, uid);
     })
     .catch(handleError);
+=======
+    .catch((error) => {
+      const errorCode = error.code;
+      console.log('error en signin', errorCode);
+    });
+>>>>>>> e5dc38b594e18d44d760a1d9cd4be02e6dfcfaad
 };
 
 const SignIn = () => {
