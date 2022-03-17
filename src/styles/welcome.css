@@ -180,8 +180,12 @@ a {
     height: 640px;
   } */
   .logoHome {
+<<<<<<< HEAD
     width: 30%;
     /* margin: 8% 0; */
+=======
+    width: 50%;
+>>>>>>> da52eb65faaed65e8043686b34b1d82189b13293
     border-radius: 100%;
   }
 }
